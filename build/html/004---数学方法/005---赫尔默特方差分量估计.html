@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>赫尔默特方差分量估计 &mdash; Ionosphere 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="克里金插值" href="004---%E5%85%8B%E9%87%8C%E9%87%91%E6%8F%92%E5%80%BC.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Ionosphere
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../001---%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95/index.html">数据索引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../002---%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3/001---%E8%AE%A1%E7%AE%97%28%E4%BF%AE%E6%AD%A3%29%E5%9C%B0%E7%A3%81%E7%BA%AC%E5%BA%A6.html">计算(修正)地磁纬度</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../002---%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3/002---COSMIC%20TEC%E8%AE%A1%E7%AE%97.html">COSMIC数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../002---%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3/003---GIM%20TEC%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3.html">GIM TEC数据详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../003---%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/001---%E6%8F%90%E5%8F%96%E6%B5%B7%E6%B4%8B%E6%88%96%E9%99%86%E5%9C%B0%E6%95%B0%E6%8D%AE.html">提取海洋或陆地数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../003---%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/002---%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.html">数据清洗</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001---EOF.html">EOF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002---%E7%90%83%E8%B0%90%E5%87%BD%E6%95%B0.html">球谐函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003---%E8%B0%90%E6%B3%A2%E5%87%BD%E6%95%B0%E6%8B%9F%E5%90%88.html">谐波函数拟合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004---%E5%85%8B%E9%87%8C%E9%87%91%E6%8F%92%E5%80%BC.html">克里金插值</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">赫尔默特方差分量估计</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ionosphere</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+      <li>赫尔默特方差分量估计</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/004---数学方法/005---赫尔默特方差分量估计.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>赫尔默特方差分量估计<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<p>1.1 概述</p>
+<p>在处理不同类型或同一类型不同精度的观测值时，由于各类观测值的方差未知，无法精确定权。实践证明，权确定的不准确，对参数估值是不敏感的，但对估值的协方差的影响是严重的。一般，我们根据经验对不同精度的观测值定初权，进行预平差，利用预平差得到的信息，主要是不同精度观测值的改正数，依据一定的原则对不同精度观测值的验前方差和协方差作出估计，从而能够定出新权，不断重复此过程，直至不同精度的观测值的单位权方差趋于一致，此时认为已经对不同精度的观测值精确定权。</p>
+<p>1.2 算法</p>
+<p>假设有两种同一类型不同精度的观测值，现进行赫尔默特方差分量估计。</p>
+<p>(1) 将不同精度的观测值分类，列误差方程</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+V=\left[\begin{array}{ccc}V_1\\V_2\end{array}\right]=\left[\begin{array}{ccc}B_1\\B_2\end{array}\right]\hat{X}-\left[\begin{array}{ccc}L_1\\L_2\end{array}\right]
+\end{split}\]</div>
+<p>(2) 根据经验确定不同精度的观测值的权
+(3) 进行预平差(整体进行)，分别计算<span class="math notranslate nohighlight">\(V_1^TP_1V_1\)</span> 和<span class="math notranslate nohighlight">\(V_2^TP_2V_2\)</span>
+(4) 按赫尔默特简化公式进行方差分量估计</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\sigma}_{0_i}^2=\frac{V_i^TP_iV_i}{n_i},其中i=1,2
+\]</div>
+<p>(5) 对不同精度的观测值定新权</p>
+<div class="math notranslate nohighlight">
+\[
+P_i=\frac{c}{\hat{\sigma}_{0_i}^2P_i^{-1}},其中i=1,2
+\]</div>
+<p>(6) 重复进行(3)-(5)，直至<span class="math notranslate nohighlight">\(\hat{\sigma}_{0_1}^2=\hat{\sigma}_{0_2}^2 \)</span>时跳出迭代。实际上，迭代的终止条件可以为<span class="math notranslate nohighlight">\(|\hat{\sigma}_{0_1}^2-\hat{\sigma}_{0_2}^2|\le 0.01\)</span></p>
+<p>1.3 参考文献</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>[1]崔希璋, 于宗俦, 陶本藻,等. 广义测量平差 (第二版)[M]. 测绘出版社, 1982.
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="004---%E5%85%8B%E9%87%8C%E9%87%91%E6%8F%92%E5%80%BC.html" class="btn btn-neutral float-left" title="克里金插值" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, 王开心.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

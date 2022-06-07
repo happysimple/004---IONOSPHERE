@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>计算(修正)地磁纬度 &mdash; Ionosphere 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="COSMIC数据处理" href="002---COSMIC%20TEC%E8%AE%A1%E7%AE%97.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Ionosphere
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../001---%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95/index.html">数据索引</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">计算(修正)地磁纬度</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xcframe">1.下载XCFRAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.导入数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.计算地磁纬度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">4.计算修正地磁纬度</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="002---COSMIC%20TEC%E8%AE%A1%E7%AE%97.html">COSMIC数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="003---GIM%20TEC%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3.html">GIM TEC数据详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../003---%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/001---%E6%8F%90%E5%8F%96%E6%B5%B7%E6%B4%8B%E6%88%96%E9%99%86%E5%9C%B0%E6%95%B0%E6%8D%AE.html">提取海洋或陆地数据</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../003---%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/002---%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.html">数据清洗</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../004---%E6%95%B0%E5%AD%A6%E6%96%B9%E6%B3%95/001---EOF.html">EOF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../004---%E6%95%B0%E5%AD%A6%E6%96%B9%E6%B3%95/002---%E7%90%83%E8%B0%90%E5%87%BD%E6%95%B0.html">球谐函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../004---%E6%95%B0%E5%AD%A6%E6%96%B9%E6%B3%95/003---%E8%B0%90%E6%B3%A2%E5%87%BD%E6%95%B0%E6%8B%9F%E5%90%88.html">谐波函数拟合</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../004---%E6%95%B0%E5%AD%A6%E6%96%B9%E6%B3%95/004---%E5%85%8B%E9%87%8C%E9%87%91%E6%8F%92%E5%80%BC.html">克里金插值</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../004---%E6%95%B0%E5%AD%A6%E6%96%B9%E6%B3%95/005---%E8%B5%AB%E5%B0%94%E9%BB%98%E7%89%B9%E6%96%B9%E5%B7%AE%E5%88%86%E9%87%8F%E4%BC%B0%E8%AE%A1.html">赫尔默特方差分量估计</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ionosphere</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+      <li>计算(修正)地磁纬度</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/002---数据详解/001---计算(修正)地磁纬度.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>计算(修正)地磁纬度<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="xcframe">
+<h2>1.下载XCFRAME<a class="headerlink" href="#xcframe" title="Permalink to this headline"></a></h2>
+<p>见<a class="reference external" href="https://ww2.mathworks.cn/matlabcentral/fileexchange/63870-xcframe-coordinate-transformation?s_tid=srchtitle_xcframe_1">MathWorks</a></p>
+</section>
+<section id="id2">
+<h2>2.导入数据<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">=</span><span class="nb">repmat</span><span class="p">([</span><span class="mi">2020</span><span class="p">,</span><span class="mi">05</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">73</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<span class="n">lon</span><span class="p">=(</span><span class="o">-</span><span class="mi">180</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">180</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="n">lat</span><span class="p">=(</span><span class="o">-</span><span class="mi">90</span><span class="p">:</span><span class="mf">2.5</span><span class="p">:</span><span class="mi">90</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="nb">height</span><span class="p">=</span><span class="nb">ones</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">lon</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">350</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>3.计算地磁纬度<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="p">=</span><span class="n">xcframe</span><span class="p">(</span><span class="n">T</span><span class="p">,[</span><span class="n">lat</span><span class="p">,</span><span class="n">lon</span><span class="p">,</span><span class="nb">height</span><span class="p">],</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="p">[],</span><span class="w"> </span><span class="s">&#39;GEO&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;MAG&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;geod84&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;sph&#39;</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="n">mlat</span><span class="p">=</span><span class="n">temp</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注：程序来自<a class="reference external" href="https://ww2.mathworks.cn/matlabcentral/fileexchange/63870-xcframe-coordinate-transformation?s_tid=srchtitle_xcframe_1">MathWorks</a>,这里给出此程序,新版本请到官网下载。<a class="reference download internal" download="" href="../_downloads/ea12b98bd55359f2a669c08804f32cfe/%E8%AE%A1%E7%AE%97%E5%9C%B0%E7%A3%81%E7%BA%AC%E5%BA%A6.zip"><code class="xref download docutils literal notranslate"><span class="pre">计算地磁纬度</span></code></a></p>
+</div>
+</section>
+<section id="id4">
+<h2>4.计算修正地磁纬度<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="o">~</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">I</span><span class="p">]=</span><span class="n">igrfmagm</span><span class="p">(</span><span class="nb">height</span><span class="p">,</span><span class="n">lat</span><span class="p">,</span><span class="n">lon</span><span class="p">,</span><span class="n">decyear</span><span class="p">(</span><span class="n">T</span><span class="p">),</span><span class="mi">13</span><span class="p">);</span><span class="w"></span>
+<span class="n">dip</span><span class="p">=</span><span class="nb">rad2deg</span><span class="p">(</span><span class="nb">atan</span><span class="p">(</span><span class="nb">deg2rad</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="o">./</span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">cosd</span><span class="p">(</span><span class="n">lat</span><span class="p">))));</span><span class="w"></span>
+</pre></div>
+</div>
+<p>① 地磁纬度</p>
+<img src="..\_static\ex02.png" alt="ex01" style="zoom:12%;" />
+<p>② 修正地磁纬度</p>
+<img src="..\_static\ex01.png" alt="ex02" style="zoom:12%;" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="002---COSMIC%20TEC%E8%AE%A1%E7%AE%97.html" class="btn btn-neutral float-right" title="COSMIC数据处理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, 王开心.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

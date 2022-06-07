@@ -1,0 +1,45 @@
+# 计算(修正)地磁纬度
+
+## 1.下载XCFRAME
+
+见[MathWorks](https://ww2.mathworks.cn/matlabcentral/fileexchange/63870-xcframe-coordinate-transformation?s_tid=srchtitle_xcframe_1)
+
+## 2.导入数据
+
+```matlab
+T=repmat([2020,05,11,0,0,0],[73,1]);
+lon=(-180:5:180)';
+lat=(-90:2.5:90)';
+height=ones(numel(lon),1)*350;
+```
+
+## 3.计算地磁纬度
+
+```matlab
+temp=xcframe(T,[lat,lon,height], [], [], 'GEO', 'MAG', 'geod84', 'sph' );
+mlat=temp(:,2);
+```
+
+```{note}
+注：程序来自[MathWorks](https://ww2.mathworks.cn/matlabcentral/fileexchange/63870-xcframe-coordinate-transformation?s_tid=srchtitle_xcframe_1),这里给出此程序,新版本请到官网下载。{download}`计算地磁纬度<../_static/计算地磁纬度.zip>`
+```
+
+## 4.计算修正地磁纬度
+
+```matlab
+[~,~,D,I]=igrfmagm(height,lat,lon,decyear(T),13);
+dip=rad2deg(atan(deg2rad(I)./sqrt(cosd(lat))));
+```
+
+① 地磁纬度
+
+<img src="..\_static\ex02.png" alt="ex01" style="zoom:12%;" />
+
+② 修正地磁纬度
+
+<img src="..\_static\ex01.png" alt="ex02" style="zoom:12%;" />
+
+
+
+
+
