@@ -15,6 +15,28 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+  <!-- 网站密码 -->
+    <SCRIPT language=JavaScript> 
+        function password() {    
+        var testV = 1;    
+        var pass1 = prompt('请输入密码:','');      
+        while (testV < 3) {      
+            if (!pass1)       
+            history.go(-1);      
+            if (pass1 == "666") {      
+            alert('密码正确!');    
+            break; 
+            }
+            testV+=-1; 
+            var pass1 = prompt('密码错误!请重新输入:'); 
+        } 
+        if (pass1!="password" & testV ==3) 
+        history.go(-1); 
+        return " "; 
+        }  
+        document.write(password()); 
+    </SCRIPT>
+  
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
