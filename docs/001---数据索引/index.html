@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="数据索引" href="001---%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95.html" />
-    <link rel="prev" title="Ionosphere" href="../index.html" /> 
+    <link rel="next" title="基础知识" href="../002---%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html" />
+    <link rel="prev" title="Welcome to HappyLaber！" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,10 +45,19 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">数据索引</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="001---%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95.html">数据索引</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gim-tec">1. GIM TEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jason-tec">2. JASON TEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iri2016-tec">3. IRI2016 TEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cosmic-tec">4. COSMIC TEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5. 地磁活动指数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">6. 太阳活动指数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gps-tec">7.GPS-TEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">8.地磁元素</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nequick2">8.NeQuick2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#o-n2">9.O/N2</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../002---%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3/index.html">数据详解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../002---%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">基础知识</a></li>
 </ul>
 
         </div>
@@ -77,19 +86,102 @@
              
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>数据索引<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="001---%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95.html">数据索引</a></li>
-</ul>
+<section id="gim-tec">
+<h2>1. GIM TEC<a class="headerlink" href="#gim-tec" title="Permalink to this headline"></a></h2>
+<p>网站1:<a class="reference external" href="https://cddis.nasa.gov/Data_and_Derived_Products/GNSS/atmospheric_products.html#iono">https://cddis.nasa.gov/Data_and_Derived_Products/GNSS/atmospheric_products.html#iono</a></p>
+<p>网站2:<a class="reference external" href="http://ftp.aiub.unibe.ch/CODE/">http://ftp.aiub.unibe.ch/CODE/ </a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference download internal" download="" href="../_downloads/3f9754aafcc22ac50d0db2adb2773c15/Get_GIM_TEC_FTP.m"><code class="xref download docutils literal notranslate"><span class="pre">GIM_TEC爬虫程序</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/a4c0c27253c3bb5617df33bf75d7358e/Read_GIM.m"><code class="xref download docutils literal notranslate"><span class="pre">GIM_TEC读取程序</span></code></a></p>
 </div>
+</section>
+<section id="jason-tec">
+<h2>2. JASON TEC<a class="headerlink" href="#jason-tec" title="Permalink to this headline"></a></h2>
+<p>网站1：<a class="reference external" href="http://rads.tudelft.nl/rads/data/authentication.cgi">http://rads.tudelft.nl/rads/data/authentication.cgi</a></p>
+<p>网站2：<a class="reference external" href="https://www.aviso.altimetry.fr/en/home.html">https://www.aviso.altimetry.fr/en/home.html</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference download internal" download="" href="../_downloads/3709513f9677ee4e46636b58e0050748/Get_JASON_TEC_FTP.m"><code class="xref download docutils literal notranslate"><span class="pre">Jason_TEC爬虫程序</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/7d12eb25018e8b6c0c65cab988e5762a/Read_JASON.m"><code class="xref download docutils literal notranslate"><span class="pre">Jason_TEC读取程序</span></code></a></p>
+</div>
+</section>
+<section id="iri2016-tec">
+<h2>3. IRI2016 TEC<a class="headerlink" href="#iri2016-tec" title="Permalink to this headline"></a></h2>
+<p>网站1：<a class="reference external" href="https://ccmc.gsfc.nasa.gov/modelweb/models/iri2016_vitmo.php">https://ccmc.gsfc.nasa.gov/modelweb/models/iri2016_vitmo.php</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference download internal" download="" href="../_downloads/ab73a358f1b1a6f309a6599c4185aa5a/IRI-%E4%B8%8B%E8%BD%BD%E9%85%8D%E7%BD%AE.zip"><code class="xref download docutils literal notranslate"><span class="pre">IRI_TEC下载程序</span></code></a>    (运行程序前请先配置环境!)</p>
+</div>
+</section>
+<section id="cosmic-tec">
+<h2>4. COSMIC TEC<a class="headerlink" href="#cosmic-tec" title="Permalink to this headline"></a></h2>
+<p>COSMIC1（2006~2014）：<a class="reference external" href="https://data.cosmic.ucar.edu/gnss-ro/cosmic1/repro2013/level2/">https://data.cosmic.ucar.edu/gnss-ro/cosmic1/repro2013/level2/</a></p>
+<p>COSMIC1（2014~2020）：<a class="reference external" href="https://data.cosmic.ucar.edu/gnss-ro/cosmic1/postProc/level2/">https://data.cosmic.ucar.edu/gnss-ro/cosmic1/postProc/level2/</a></p>
+<p>COSMIC2：<a class="reference external" href="https://data.cosmic.ucar.edu/gnss-ro/cosmic2/provisional/spaceWeather/level2/">https://data.cosmic.ucar.edu/gnss-ro/cosmic2/provisional/spaceWeather/level2/</a></p>
+<p>COSMIC TEC数据说明：<a class="reference external" href="https://cdaac-www.cosmic.ucar.edu/cdaac/cgi_bin/fileFormats.cgi?type=ionPrf">https://cdaac-www.cosmic.ucar.edu/cdaac/cgi_bin/fileFormats.cgi?type=ionPrf</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference download internal" download="" href="../_downloads/8e6bd9d6f79919a3287e3f678b313bad/Get_COSMIC_TEC_WEB.m"><code class="xref download docutils literal notranslate"><span class="pre">COSMIC_TEC爬虫程序</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/3b418b56efb1bc56fc2cb18a96678230/Read_COSMIC.m"><code class="xref download docutils literal notranslate"><span class="pre">COSMIC_TEC读取程序</span></code></a></p>
+</div>
+</section>
+<section id="id2">
+<h2>5. 地磁活动指数<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p>网站1：<a class="reference external" href="https://omniweb.gsfc.nasa.gov/form/dx1.html">https://omniweb.gsfc.nasa.gov/form/dx1.html</a></p>
+</section>
+<section id="id3">
+<h2>6. 太阳活动指数<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>网站1：<a class="reference external" href="https://omniweb.gsfc.nasa.gov/form/dx1.html">https://omniweb.gsfc.nasa.gov/form/dx1.html</a></p>
+</section>
+<section id="gps-tec">
+<h2>7.GPS-TEC<a class="headerlink" href="#gps-tec" title="Permalink to this headline"></a></h2>
+<p>网站1：<a class="reference external" href="http://www.ionolab.org/">http://www.ionolab.org/</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>需要科学上网</p>
+</div>
+</section>
+<section id="id4">
+<h2>8.地磁元素<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<p>网站1：<a class="reference external" href="http://wdc.kugi.kyoto-u.ac.jp/igrf/index.html">http://wdc.kugi.kyoto-u.ac.jp/igrf/index.html</a></p>
+<details class="sphinx-bs dropdown card mb-3 fade-in">
+<summary class="summary-title card-header">
+数据内容<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Total Intensity (F)<br />
+Declination (D)<br />
+Inclination (I)<br />
+Horizontal Component (H)<br />
+Northward Component (X)<br />
+Eastward Component (Y)<br />
+Vertical Component (Z)</p>
+</div>
+</details></section>
+<section id="nequick2">
+<h2>8.NeQuick2<a class="headerlink" href="#nequick2" title="Permalink to this headline"></a></h2>
+<p>网站1：<a class="reference external" href="https://t-ict4d.ictp.it/nequick2/nequick-2-web-model">https://t-ict4d.ictp.it/nequick2/nequick-2-web-model</a></p>
+</section>
+<section id="o-n2">
+<h2>9.O/N2<a class="headerlink" href="#o-n2" title="Permalink to this headline"></a></h2>
+<p>网站1：<a class="reference external" href="http://guvitimed.jhuapl.edu/">http://guvitimed.jhuapl.edu/</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference download internal" download="" href="../_downloads/16e132d70e051ed6164526c3fd8f0a13/download_O_N2.m"><code class="xref download docutils literal notranslate"><span class="pre">O/N2爬虫程序</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/980a1cdeca6365badd4784511defce94/read_to_nc.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">O/N2读取程序</span></code></a></p>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Ionosphere" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="001---%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95.html" class="btn btn-neutral float-right" title="数据索引" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to HappyLaber！" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../002---%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html" class="btn btn-neutral float-right" title="基础知识" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

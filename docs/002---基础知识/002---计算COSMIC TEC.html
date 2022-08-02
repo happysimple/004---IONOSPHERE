@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COSMIC数据处理 &mdash; Ionosphere 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="计算(修正)地磁纬度" href="001---%E8%AE%A1%E7%AE%97%28%E4%BF%AE%E6%AD%A3%29%E5%9C%B0%E7%A3%81%E7%BA%AC%E5%BA%A6.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Ionosphere
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../001---%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95/index.html">数据索引</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基础知识</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="001---%E8%AE%A1%E7%AE%97%28%E4%BF%AE%E6%AD%A3%29%E5%9C%B0%E7%A3%81%E7%BA%AC%E5%BA%A6.html">计算(修正)地磁纬度</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">COSMIC数据处理</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.质量控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vtec">2.计算VTEC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.参考文献</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Ionosphere</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">基础知识</a> &raquo;</li>
+      <li>COSMIC数据处理</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/002---基础知识/002---计算COSMIC TEC.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="cosmic">
+<h1>COSMIC数据处理<a class="headerlink" href="#cosmic" title="Permalink to this headline"></a></h1>
+<section id="id1">
+<h2>1.质量控制<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>①<span class="math notranslate nohighlight">\(ne(i)\)</span>：第i个原始电子密度，<span class="math notranslate nohighlight">\(\overline{ne}(i)\)</span>：第i个平滑后的电子密度 (9点滑动平均),<span class="math notranslate nohighlight">\(MD\)</span>:电子密度平均偏差.
+$<span class="math notranslate nohighlight">\(
+MD=\sum\limits_{i=1}^N\frac{|ne(i)-\overline{ne}(i)|}{N\cdot\overline{ne}(i)}&lt;0.1合格
+\)</span>$</p>
+<p>②</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma=\sqrt{\frac{\sum\limits_{i=1}^N(ne(i)-\overline{ne}(i))^2}{N\cdot (NmF2)^2}}&lt;0.05合格
+\]</div>
+<p>③</p>
+<div class="math notranslate nohighlight">
+\[
+h&gt;hmF2时,\Delta_g=\frac{dne}{dh}&lt;0合格
+\]</div>
+<p>④</p>
+<div class="math notranslate nohighlight">
+\[
+420km\le h \le 490km时,\Delta_l=\frac{dne}{dh}&lt;0合格
+\]</div>
+<p>⑤</p>
+<div class="math notranslate nohighlight">
+\[
+文件读取：NmF2\ge 0
+\]</div>
+<p>⑥</p>
+<div class="math notranslate nohighlight">
+\[
+   文件读取：hmF2\ge 200km
+\]</div>
+</section>
+<section id="vtec">
+<h2>2.计算VTEC<a class="headerlink" href="#vtec" title="Permalink to this headline"></a></h2>
+<p>①计算STEC
+$<span class="math notranslate nohighlight">\(
+STEC=trapz(MSL\_alt,ELEC\_dens)*10^{-7};
+\)</span>$
+②计算映射函数Mz</p>
+<p><span class="math notranslate nohighlight">\(z\)</span>为高度角的余角,<span class="math notranslate nohighlight">\(\alpha=0.9782，H_{ipp}=450km,R_E=6378.137km\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\sin z^{'}=\frac{R_E\sin (\alpha z)}{R_E+H_{ipp}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+z=arccos\frac{\Delta h}{\sqrt{\Delta lon^2+\Delta lat^2+\Delta h^2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Mz=\frac{1}{cosz'}
+\]</div>
+<p>③计算VTEC</p>
+<div class="math notranslate nohighlight">
+\[
+VTEC=\frac{STEC}{Mz}
+\]</div>
+</section>
+<section id="id2">
+<h2>3.参考文献<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>[1]王涵. FY-3C掩星电离层产品的反演、验证及其在偶发E层研究中的应用[D].武汉大学,2020.
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="001---%E8%AE%A1%E7%AE%97%28%E4%BF%AE%E6%AD%A3%29%E5%9C%B0%E7%A3%81%E7%BA%AC%E5%BA%A6.html" class="btn btn-neutral float-left" title="计算(修正)地磁纬度" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, 王开心.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
