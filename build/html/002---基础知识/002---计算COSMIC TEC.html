@@ -26,7 +26,6 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="GIM TEC数据详解" href="003---GIM%20TEC%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3.html" />
     <link rel="prev" title="计算(修正)地磁纬度" href="001---%E8%AE%A1%E7%AE%97%28%E4%BF%AE%E6%AD%A3%29%E5%9C%B0%E7%A3%81%E7%BA%AC%E5%BA%A6.html" /> 
 </head>
 
@@ -47,7 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../001---%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95/index.html">数据索引</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">数据详解</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基础知识</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="001---%E8%AE%A1%E7%AE%97%28%E4%BF%AE%E6%AD%A3%29%E5%9C%B0%E7%A3%81%E7%BA%AC%E5%BA%A6.html">计算(修正)地磁纬度</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">COSMIC数据处理</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">1.质量控制</a></li>
@@ -55,7 +54,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#id2">3.参考文献</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="003---GIM%20TEC%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3.html">GIM TEC数据详解</a></li>
 </ul>
 </li>
 </ul>
@@ -74,10 +72,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">数据详解</a> &raquo;</li>
+          <li><a href="index.html">基础知识</a> &raquo;</li>
       <li>COSMIC数据处理</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/002---数据详解/002---COSMIC TEC计算.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/002---基础知识/002---计算COSMIC TEC.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -89,11 +87,10 @@
 <h1>COSMIC数据处理<a class="headerlink" href="#cosmic" title="Permalink to this headline"></a></h1>
 <section id="id1">
 <h2>1.质量控制<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
-<p>①<span class="math notranslate nohighlight">\(ne(i)\)</span>：第i个原始电子密度，<span class="math notranslate nohighlight">\(\overline{ne}(i)\)</span>：第i个平滑后的电子密度 (9点滑动平均)</p>
-<div class="math notranslate nohighlight">
-\[
+<p>①<span class="math notranslate nohighlight">\(ne(i)\)</span>：第i个原始电子密度，<span class="math notranslate nohighlight">\(\overline{ne}(i)\)</span>：第i个平滑后的电子密度 (9点滑动平均),<span class="math notranslate nohighlight">\(MD\)</span>:电子密度平均偏差.
+$<span class="math notranslate nohighlight">\(
 MD=\sum\limits_{i=1}^N\frac{|ne(i)-\overline{ne}(i)|}{N\cdot\overline{ne}(i)}&lt;0.1合格
-\]</div>
+\)</span>$</p>
 <p>②</p>
 <div class="math notranslate nohighlight">
 \[
@@ -122,11 +119,11 @@ h&gt;hmF2时,\Delta_g=\frac{dne}{dh}&lt;0合格
 </section>
 <section id="vtec">
 <h2>2.计算VTEC<a class="headerlink" href="#vtec" title="Permalink to this headline"></a></h2>
-<p>①计算STEC</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">STEC</span><span class="p">=</span><span class="nb">trapz</span><span class="p">(</span><span class="n">MSL_alt</span><span class="p">,</span><span class="n">ELEC_dens</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span>^<span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
-</pre></div>
-</div>
-<p>②计算映射函数Mz</p>
+<p>①计算STEC
+$<span class="math notranslate nohighlight">\(
+STEC=trapz(MSL\_alt,ELEC\_dens)*10^{-7};
+\)</span>$
+②计算映射函数Mz</p>
 <p><span class="math notranslate nohighlight">\(z\)</span>为高度角的余角,<span class="math notranslate nohighlight">\(\alpha=0.9782，H_{ipp}=450km,R_E=6378.137km\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -135,6 +132,10 @@ h&gt;hmF2时,\Delta_g=\frac{dne}{dh}&lt;0合格
 <div class="math notranslate nohighlight">
 \[
 z=arccos\frac{\Delta h}{\sqrt{\Delta lon^2+\Delta lat^2+\Delta h^2}}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Mz=\frac{1}{cosz'}
 \]</div>
 <p>③计算VTEC</p>
 <div class="math notranslate nohighlight">
@@ -155,7 +156,6 @@ VTEC=\frac{STEC}{Mz}
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="001---%E8%AE%A1%E7%AE%97%28%E4%BF%AE%E6%AD%A3%29%E5%9C%B0%E7%A3%81%E7%BA%AC%E5%BA%A6.html" class="btn btn-neutral float-left" title="计算(修正)地磁纬度" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="003---GIM%20TEC%E6%95%B0%E6%8D%AE%E8%AF%A6%E8%A7%A3.html" class="btn btn-neutral float-right" title="GIM TEC数据详解" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
